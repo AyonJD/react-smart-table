@@ -23,6 +23,7 @@ function Pagination({ pageCount, currentPage, setCurrentPage, allUsersCount, set
         , [currentPage]);
 
     const paginationBasic = (
+        <>
         <div className="flex flex-col md:flex-row justify-between items-center container mx-auto">
             <div className="left ">
                 <div className="md:flex items-center w-full">
@@ -54,13 +55,9 @@ function Pagination({ pageCount, currentPage, setCurrentPage, allUsersCount, set
                         <span className="ml-1 md:text-lg font-medium text-base">Users/Page</span>
                     </div>
                 </div>
-                <div className="text-center mt-6 mb-4 ">
-                    <span>
-                        <strong>{dataRange}</strong>
-                    </span>
-                </div>
+                
             </div>
-            <form className=" md:w-[400px] w-[90vw] mt-4 md:mt-0 mx-auto">
+            <form className=" md:w-[400px] w-[90vw] mt-4 md:mt-0 mx-auto md:ml-auto">
                 <input
                     className="input input-bordered input-primary w-full"
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -68,6 +65,12 @@ function Pagination({ pageCount, currentPage, setCurrentPage, allUsersCount, set
                     type="text" placeholder="Name, Email, Age or Company" />
             </form>
         </div>
+        <div className="text-center mt-6 mb-4 ">
+        <span>
+            <strong className="text-xl ">{dataRange}</strong>
+        </span>
+    </div>
+        </>
     );
 
     return paginationBasic;
