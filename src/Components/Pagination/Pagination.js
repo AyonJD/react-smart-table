@@ -43,6 +43,12 @@ function Pagination({ pageCount, currentPage, setCurrentPage, allUsersCount, set
                 </select>
                 <span>Users/Page</span>
             </div>
+            <form>
+                    <input
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        value={searchQuery}
+                        type="text" placeholder="Name, Email, Age or Company" />
+            </form>
         </div>
     );
 
