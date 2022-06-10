@@ -43,7 +43,7 @@ const UsersTable = ({
     if (!filteredUsers) {
         usersList = users.map((user) => {
             return (
-                <tr className="text-center" key={user._id}>
+                <tr className="text-center hover" key={user._id}>
                     <td>{allUsers.findIndex((x) => x._id === user._id) + 1}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
@@ -59,7 +59,7 @@ const UsersTable = ({
     } else {
         usersList = filteredUsers.map((user) => {
             return (
-                <tr className="text-center" key={user._id}>
+                <tr className="text-center hover" key={user._id}>
                     <td>{allUsers.findIndex((x) => x._id === user._id) + 1}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
@@ -75,10 +75,10 @@ const UsersTable = ({
     }
 
     return (
-        <div>
-            <table>
+        <div className="overflow-x-auto container mx-auto">
+            <table className="table w-full">
                 <thead>
-                    <tr className="text-center">
+                    <tr className="text-center hover">
                         <th>Serial</th>
                         <th>Name</th>
                         <th>Email</th>

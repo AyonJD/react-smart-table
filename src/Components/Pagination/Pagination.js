@@ -54,13 +54,13 @@ function Pagination({ pageCount, currentPage, setCurrentPage, allUsersCount, set
                         <span className="ml-1 md:text-lg font-medium text-base">Users/Page</span>
                     </div>
                 </div>
-                <div className="text-center mt-4 md:mt-0">
+                <div className="text-center mt-6 mb-4 ">
                     <span>
                         <strong>{dataRange}</strong>
                     </span>
                 </div>
             </div>
-            <form className=" md:w-[400px] w-full mx-auto">
+            <form className=" md:w-[400px] w-[90vw] mt-4 md:mt-0 mx-auto">
                 <input
                     className="input input-bordered input-primary w-full"
                     onChange={(e) => setSearchQuery(e.target.value)}
