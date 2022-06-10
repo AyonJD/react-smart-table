@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
     const [allUsersCount, setAllUsersCount] = useState(0);
@@ -7,6 +8,16 @@ const Home = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [dataRange, setDataRange] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        fetch(`https://react-smart-data-table.herokuapp.com/users`)
+            .then((res) => res.json())
+            .then((data) => {
+                setAllUsers(data);
+            });
+    }, [allUsersCount]);
 
     useEffect(() => {
         if (pageSize === "10") {
@@ -18,15 +29,6 @@ const Home = () => {
                 });
         }
     }, [pageCount, pageSize]);
-
-
-    useEffect(() => {
-        fetch(`https://react-smart-data-table.herokuapp.com/users`)
-            .then((res) => res.json())
-            .then((data) => {
-                setAllUsers(data);
-            });
-    }, [allUsersCount]);
 
     useEffect(() => {
         fetch(`https://react-smart-data-table.herokuapp.com/users/${pageSize}/${currentPage}`)
@@ -44,6 +46,17 @@ const Home = () => {
     return (
         <div className="my-5">
             {allUsers.length}
+            <Pagination
+                dataRange={dataRange}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                pageCount={pageCount}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                allUsersCount={allUsersCount}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+            ></Pagination>
         </div>
     );
 };
