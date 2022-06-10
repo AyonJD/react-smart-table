@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
+import Spinner from "../Spinner/Spinner";
 import UsersTable from "../UsersTable/UsersTable";
 
 const Home = () => {
@@ -11,8 +12,11 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataRange, setDataRange] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
+
         fetch(`https://react-smart-data-table.herokuapp.com/users`)
             .then((res) => res.json())
             .then((data) => {
@@ -32,10 +36,12 @@ const Home = () => {
     }, [pageCount, pageSize]);
 
     useEffect(() => {
+        setLoading(true);
         fetch(`https://react-smart-data-table.herokuapp.com/users/${pageSize}/${currentPage}`)
             .then((res) => res.json())
             .then((data) => {
                 setUsers(data);
+                setLoading(false);
             })
             .then(() => {
                 if (pageSize !== "10") {
@@ -44,20 +50,22 @@ const Home = () => {
             });
     }, [currentPage, pageSize, pageCount, allUsersCount]);
 
+
+
     return (
         <div className="my-5">
             {/* <div className="text-center"> */}
-                <Pagination
-                    dataRange={dataRange}
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    pageCount={pageCount}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    allUsersCount={allUsersCount}
-                    pageSize={pageSize}
-                    setPageSize={setPageSize}
-                ></Pagination>
+            <Pagination
+                dataRange={dataRange}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                pageCount={pageCount}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                allUsersCount={allUsersCount}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+            ></Pagination>
             {/* </div> */}
             <UsersTable
                 users={users}
@@ -65,6 +73,7 @@ const Home = () => {
                 setDataRange={setDataRange}
                 totalUsers={allUsersCount}
                 searchQuery={searchQuery}
+                loading={loading}
             ></UsersTable>
         </div>
     );

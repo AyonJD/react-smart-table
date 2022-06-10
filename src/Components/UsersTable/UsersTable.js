@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Spinner from "../Spinner/Spinner";
 
 const UsersTable = ({
     users,
     allUsers,
     setDataRange,
     totalUsers,
-    searchQuery
+    searchQuery,
+    loading,
 }) => {
 
     const firstUserIndex = allUsers.findIndex(
@@ -20,6 +22,7 @@ const UsersTable = ({
         ${firstUserIndex + 1} to ${lastUserIndex + 1} 
          of ${totalUsers} Users`);
     }, [totalUsers, firstUserIndex, lastUserIndex]);
+
 
     let filteredUsers;
 
@@ -76,22 +79,28 @@ const UsersTable = ({
 
     return (
         <div className="overflow-x-auto container mx-auto">
-            <table className="table w-full">
-                <thead>
-                    <tr className="text-center hover">
-                        <th>Serial</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Gender</th>
-                        <th>Company</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tbody>{usersList}</tbody>
-            </table>
+            {
+                loading ?
+                    <Spinner></Spinner>
+                    :
+                    <table className="table w-full">
+                        <thead>
+                            <tr className="text-center hover">
+                                <th>Serial</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                <th>Company</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>{usersList}</tbody>
+                    </table>
+            }
+
         </div>
     );
 };
