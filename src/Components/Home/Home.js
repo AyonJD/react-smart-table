@@ -46,18 +46,19 @@ const Home = () => {
 
     return (
         <div className="my-5">
-            {allUsers.length}
-            <Pagination
-                dataRange={dataRange}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                pageCount={pageCount}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                allUsersCount={allUsersCount}
-                pageSize={pageSize}
-                setPageSize={setPageSize}
-            ></Pagination>
+            {/* <div className="text-center"> */}
+                <Pagination
+                    dataRange={dataRange}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    pageCount={pageCount}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    allUsersCount={allUsersCount}
+                    pageSize={pageSize}
+                    setPageSize={setPageSize}
+                ></Pagination>
+            {/* </div> */}
             <UsersTable
                 users={users}
                 allUsers={allUsers}
