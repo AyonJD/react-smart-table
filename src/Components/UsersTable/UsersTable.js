@@ -17,8 +17,8 @@ const UsersTable = ({
 
     useEffect(() => {
         setDataRange(`
-        Showing ${firstUserIndex + 1} to ${lastUserIndex + 1} 
-         of ${totalUsers} entries`);
+        ${firstUserIndex + 1} to ${lastUserIndex + 1} 
+         of ${totalUsers} Users`);
     }, [totalUsers, firstUserIndex, lastUserIndex]);
 
     let filteredUsers;
