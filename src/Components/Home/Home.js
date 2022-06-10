@@ -5,6 +5,8 @@ const Home = () => {
     const [pageCount, setPageCount] = useState(0);
     const [pageSize, setPageSize] = useState("10");
     const [allUsers, setAllUsers] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         if (pageSize === "10") {
@@ -25,6 +27,19 @@ const Home = () => {
                 setAllUsers(data);
             });
     }, [allUsersCount]);
+
+    useEffect(() => {
+        fetch(`https://react-smart-data-table.herokuapp.com/users/${pageSize}/${currentPage}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setUsers(data);
+            })
+            .then(() => {
+                if (pageSize !== "10") {
+                    setPageCount(Math.ceil(allUsersCount / pageSize));
+                }
+            });
+    }, [currentPage, pageSize, pageCount, allUsersCount]);
 
     return (
         <div className="my-5">
