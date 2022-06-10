@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
+import UsersTable from "../UsersTable/UsersTable";
 
 const Home = () => {
     const [allUsersCount, setAllUsersCount] = useState(0);
@@ -57,6 +58,13 @@ const Home = () => {
                 pageSize={pageSize}
                 setPageSize={setPageSize}
             ></Pagination>
+            <UsersTable
+                users={users}
+                allUsers={allUsers}
+                setDataRange={setDataRange}
+                totalUsers={allUsersCount}
+                searchQuery={searchQuery}
+            ></UsersTable>
         </div>
     );
 };
